@@ -1,0 +1,353 @@
+export const translations = {
+  kk: {
+    home: "Басты бет",
+    lesson: "Сабақ",
+    analytics: "Аналитика",
+    profile: "Профиль",
+    welcome: "Қош келдіңіз, {name}!",
+    progress: "Жалпы прогресс",
+    tasksCompleted: "Орындалған тапсырмалар",
+    streak: "Қатарынан күндер",
+    hintsUsed: "ZerdeAI көмегі",
+    lessonStatus: {
+      completed: "Аяқталды",
+      locked: "Жабық",
+      active: "Бастау"
+    },
+    difficulty: {
+      easy: "Жеңіл",
+      medium: "Орташа",
+      hard: "Күрделі"
+    },
+    visualization: "Визуализация",
+    tasks: "Тапсырмалар",
+    zerdeAIFeedback: "ZerdeAI Кері байланысы",
+    understood: "Түсіндім, тапсырмаға өтемін ➜",
+    uploadFile: "Файл жүктеу",
+    onlineEditor: "Компилятор",
+    submit: "Тапсыру",
+    run: "Іске қосу",
+    dragDrop: "Файлды осында сүйреңіз немесе таңдаңыз",
+    fileSizeLimit: "Файл өлшемі 500KB аспауы тиіс",
+    send: "Жіберу",
+    quotes: [
+      "Еңбек етсең ерінбей, тояды қарның тіленбей. — Абай Құнанбайұлы",
+      "Оқу — білім бұлағы, білім — өмір шырағы.",
+      "Ақыл азбайды, білім тозбайды.",
+      "Білгенің бір тоғыз, білмегенің тоқсан тоғыз.",
+      "Өнер алды — қызыл тіл."
+    ],
+    analyticsTitle: "ZerdeAI Терең Талдауы",
+    errorHeatmap: "Қай тапсырмаларда ең көп қате жіберілді?",
+    errorPatterns: "Қателер бір-біріне ұқсас па?",
+    activityAnalysis: "Қай тапсырмаларда оқушылар белсенді?",
+    skillProgress: "Оқушылардың дағдылары қандай деңгейде?",
+    aiRecommendations: "Сабақ жоспарын жақсарту үшін не істеу керек?",
+    studentProfiles: "Жеке оқушы прогрессі",
+    addToPlan: "Жоспарға қос",
+    exportCsv: "CSV жүктеу",
+    settings: "Баптаулар",
+    language: "Тіл",
+    save: "Сақтау",
+    name: "Есіміңіз",
+    achievements: "Жетістіктер",
+    speed: "Жылдамдық",
+    slow: "Баяу",
+    normal: "Қалыпты",
+    fast: "Жылдам",
+    nextStep: "Келесі қадам →",
+    auth: {
+      studentLoginBtn: "Оқушы ретінде кіру",
+      teacherLoginBtn: "Мұғалім ретінде кіру",
+      fullName: "Аты-жөні",
+      classCode: "Сынып коды",
+      password: "Құпия сөз",
+      confirmPassword: "Құпия сөзді растау",
+      schoolName: "Мектеп атауы",
+      email: "Электрондық пошта",
+      login: "Кіру",
+      register: "Тіркелу",
+      noAccount: "Аккаунтыңыз жоқ па?",
+      hasAccount: "Аккаунтыңыз бар ма?",
+      invalidClassCode: "Бұл код жоқ. Мұғаліміңізден кодты алыңыз.",
+      logout: "Шығу",
+      teacherDashboard: "Мұғалім панелі",
+      addClass: "+ Жаңа сынып қосу",
+      className: "Сынып атауы",
+      studentsCount: "Оқушылар:",
+      copyCode: "Кодты көшіру",
+      codeCopied: "Көшірілді!",
+      selectClass: "Сыныпты таңдаңыз",
+      allClasses: "Барлық сыныптар"
+    },
+    taskUnlock: {
+      lockedTooltip: "Алдыңғы тапсырманы дұрыс орындаңыз",
+      expectedOutput: "Күтілетін нәтиже:",
+      markCorrect: "✅ Дұрыс деп белгілеу",
+      markIncorrect: "❌ Қайта орындаймын"
+    },
+    zerdeAI: {
+      hint1: "1-көмек: Бағыт",
+      hint2: "2-көмек: Псевдокод",
+      hint3: "3-көмек: Нақты жол",
+      requestHint: "Көмек сұрау",
+      feedback: {
+        correct: {
+          general: "Керемет! Тапсырманы толық дұрыс орындадың.",
+          issue: "Қате табылған жоқ.",
+          direction: "Келесі қиындық деңгейіне өтуге дайынсың ба?",
+          resource: "Жаңа алгоритмдер туралы оқу",
+          encouragement: "Осы қарқыннан тайма!"
+        },
+        partial: {
+          general: "Жақсы бастама! Логиканы дұрыс ойладың.",
+          issue: "Циклдің шарты дұрыс па? Соңғы индексті тексер.",
+          direction: "Егер массив бос болса, не болады деп ойлайсың?",
+          resource: "Массив индекстері туралы қайталау",
+          encouragement: "Кішкене ғана қалды, сенің қолыңнан келеді!"
+        },
+        wrong: {
+          general: "Талпынысың жақсы, бірақ нәтиже әлі шықпады.",
+          issue: "Айнымалылардың бастапқы мәндері дұрыс берілмеген сияқты.",
+          direction: "Есептің шартын қайта оқып, әр қадамды қағазға жазып көр.",
+          resource: "Негізгі түсініктерді қайталау",
+          encouragement: "Қателіктер — үйренудің ең жақсы жолы. Қайта байқап көр!"
+        }
+      }
+    }
+  },
+  ru: {
+    home: "Главная",
+    lesson: "Урок",
+    analytics: "Аналитика",
+    profile: "Профиль",
+    welcome: "Добро пожаловать, {name}!",
+    progress: "Общий прогресс",
+    tasksCompleted: "Выполнено заданий",
+    streak: "Дней подряд",
+    hintsUsed: "Подсказки ZerdeAI",
+    lessonStatus: {
+      completed: "Пройдено",
+      locked: "Закрыто",
+      active: "Начать"
+    },
+    difficulty: {
+      easy: "Легкий",
+      medium: "Средний",
+      hard: "Сложный"
+    },
+    visualization: "Визуализация",
+    tasks: "Задания",
+    zerdeAIFeedback: "Отзыв ZerdeAI",
+    understood: "Понятно, перейти к заданиям ➜",
+    uploadFile: "Загрузить файл",
+    onlineEditor: "Компилятор",
+    submit: "Сдать",
+    run: "Запустить",
+    dragDrop: "Перетащите файл сюда или выберите",
+    fileSizeLimit: "Размер файла не более 500KB",
+    send: "Отправить",
+    quotes: [
+      "Труд — основа всего.",
+      "Ученье — свет, а неученье — тьма.",
+      "Знания не стареют.",
+      "Век живи — век учись.",
+      "Искусство красноречия — великий дар."
+    ],
+    analyticsTitle: "Глубокий анализ ZerdeAI",
+    errorHeatmap: "В каких заданиях больше всего ошибок?",
+    errorPatterns: "Похожи ли ошибки друг на друга?",
+    activityAnalysis: "В каких заданиях ученики активны?",
+    skillProgress: "На каком уровне навыки учеников?",
+    aiRecommendations: "Что сделать для улучшения плана урока?",
+    studentProfiles: "Прогресс отдельных учеников",
+    addToPlan: "Добавить в план",
+    exportCsv: "Скачать CSV",
+    settings: "Настройки",
+    language: "Язык",
+    save: "Сохранить",
+    name: "Ваше имя",
+    achievements: "Достижения",
+    speed: "Скорость",
+    slow: "Медленно",
+    normal: "Нормально",
+    fast: "Быстро",
+    nextStep: "Следующий шаг →",
+    auth: {
+      studentLoginBtn: "Войти как ученик",
+      teacherLoginBtn: "Войти как учитель",
+      fullName: "ФИО",
+      classCode: "Код класса",
+      password: "Пароль",
+      confirmPassword: "Подтвердите пароль",
+      schoolName: "Название школы",
+      email: "Электронная почта",
+      login: "Войти",
+      register: "Зарегистрироваться",
+      noAccount: "Нет аккаунта?",
+      hasAccount: "Есть аккаунт?",
+      invalidClassCode: "Этот код не существует. Получите код у учителя.",
+      logout: "Выйти",
+      teacherDashboard: "Панель учителя",
+      addClass: "+ Добавить новый класс",
+      className: "Название класса",
+      studentsCount: "Ученики:",
+      copyCode: "Скопировать код",
+      codeCopied: "Скопировано!",
+      selectClass: "Выберите класс",
+      allClasses: "Все классы"
+    },
+    taskUnlock: {
+      lockedTooltip: "Правильно выполните предыдущее задание",
+      expectedOutput: "Ожидаемый результат:",
+      markCorrect: "✅ Отметить как правильное",
+      markIncorrect: "❌ Выполнить заново"
+    },
+    zerdeAI: {
+      hint1: "Подсказка 1: Направление",
+      hint2: "Подсказка 2: Псевдокод",
+      hint3: "Подсказка 3: Конкретная строка",
+      requestHint: "Попросить подсказку",
+      feedback: {
+        correct: {
+          general: "Отлично! Задание выполнено полностью верно.",
+          issue: "Ошибок не найдено.",
+          direction: "Готов перейти к следующему уровню сложности?",
+          resource: "Изучить новые алгоритмы",
+          encouragement: "Так держать!"
+        },
+        partial: {
+          general: "Хорошее начало! Логика верная.",
+          issue: "Правильное ли условие цикла? Проверь последний индекс.",
+          direction: "Как думаешь, что будет, если массив пуст?",
+          resource: "Повторить индексы массивов",
+          encouragement: "Осталось совсем немного, у тебя получится!"
+        },
+        wrong: {
+          general: "Хорошая попытка, но результат пока не достигнут.",
+          issue: "Кажется, начальные значения переменных заданы неверно.",
+          direction: "Перечитай условие задачи и распиши каждый шаг на бумаге.",
+          resource: "Повторить базовые концепции",
+          encouragement: "Ошибки — лучший способ учиться. Попробуй еще раз!"
+        }
+      }
+    }
+  },
+  en: {
+    home: "Home",
+    lesson: "Lesson",
+    analytics: "Analytics",
+    profile: "Profile",
+    welcome: "Welcome, {name}!",
+    progress: "Overall Progress",
+    tasksCompleted: "Tasks Completed",
+    streak: "Day Streak",
+    hintsUsed: "ZerdeAI Hints",
+    lessonStatus: {
+      completed: "Completed",
+      locked: "Locked",
+      active: "Start"
+    },
+    difficulty: {
+      easy: "Easy",
+      medium: "Medium",
+      hard: "Hard"
+    },
+    visualization: "Visualization",
+    tasks: "Tasks",
+    zerdeAIFeedback: "ZerdeAI Feedback",
+    understood: "Understood, go to tasks ➜",
+    uploadFile: "Upload File",
+    onlineEditor: "Online Editor",
+    submit: "Submit",
+    run: "Run",
+    dragDrop: "Drag & drop file here or select",
+    fileSizeLimit: "File size limit 500KB",
+    send: "Send",
+    quotes: [
+      "Hard work is the foundation of everything.",
+      "Learning is the source of knowledge.",
+      "Knowledge never gets old.",
+      "Live and learn.",
+      "The art of speech is a great gift."
+    ],
+    analyticsTitle: "ZerdeAI Deep Analytics",
+    errorHeatmap: "Which tasks have the most errors?",
+    errorPatterns: "Are the errors similar?",
+    activityAnalysis: "Which tasks are students active in?",
+    skillProgress: "What is the skill level of students?",
+    aiRecommendations: "What to do to improve the lesson plan?",
+    studentProfiles: "Individual student progress",
+    addToPlan: "Add to plan",
+    exportCsv: "Export CSV",
+    settings: "Settings",
+    language: "Language",
+    save: "Save",
+    name: "Your Name",
+    achievements: "Achievements",
+    speed: "Speed",
+    slow: "Slow",
+    normal: "Normal",
+    fast: "Fast",
+    nextStep: "Next Step →",
+    auth: {
+      studentLoginBtn: "Login as Student",
+      teacherLoginBtn: "Login as Teacher",
+      fullName: "Full Name",
+      classCode: "Class Code",
+      password: "Password",
+      confirmPassword: "Confirm Password",
+      schoolName: "School Name",
+      email: "Email",
+      login: "Login",
+      register: "Register",
+      noAccount: "Don't have an account?",
+      hasAccount: "Already have an account?",
+      invalidClassCode: "This code does not exist. Get the code from your teacher.",
+      logout: "Logout",
+      teacherDashboard: "Teacher Dashboard",
+      addClass: "+ Add new class",
+      className: "Class Name",
+      studentsCount: "Students:",
+      copyCode: "Copy Code",
+      codeCopied: "Copied!",
+      selectClass: "Select Class",
+      allClasses: "All Classes"
+    },
+    taskUnlock: {
+      lockedTooltip: "Complete the previous task correctly",
+      expectedOutput: "Expected output:",
+      markCorrect: "✅ Mark as correct",
+      markIncorrect: "❌ Try again"
+    },
+    zerdeAI: {
+      hint1: "Hint 1: Direction",
+      hint2: "Hint 2: Pseudocode",
+      hint3: "Hint 3: Specific line",
+      requestHint: "Request Hint",
+      feedback: {
+        correct: {
+          general: "Great! The task is completed perfectly.",
+          issue: "No errors found.",
+          direction: "Ready to move to the next difficulty level?",
+          resource: "Read about new algorithms",
+          encouragement: "Keep it up!"
+        },
+        partial: {
+          general: "Good start! The logic is correct.",
+          issue: "Is the loop condition correct? Check the last index.",
+          direction: "What do you think happens if the array is empty?",
+          resource: "Review array indices",
+          encouragement: "Just a little bit left, you can do it!"
+        },
+        wrong: {
+          general: "Good attempt, but the result is not there yet.",
+          issue: "It seems the initial values of variables are incorrect.",
+          direction: "Reread the task condition and write down each step on paper.",
+          resource: "Review basic concepts",
+          encouragement: "Mistakes are the best way to learn. Try again!"
+        }
+      }
+    }
+  }
+};
