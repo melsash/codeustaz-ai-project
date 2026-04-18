@@ -1,6 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { BookOpen, GraduationCap } from 'lucide-react';
 import { translations } from '../translations';
 
 interface LandingProps {
@@ -9,47 +7,104 @@ interface LandingProps {
 }
 
 export const Landing: React.FC<LandingProps> = ({ onSelect, language }) => {
-  const t = (key: string) => translations[language][key as keyof typeof translations['kk']] || key;
-  const authT = (key: string) => translations[language].auth[key as keyof typeof translations['kk']['auth']] || key;
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFF] p-4">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center"
-      >
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-[#1A56DB] rounded-2xl flex items-center justify-center rotate-3">
-            <BookOpen className="w-8 h-8 text-white -rotate-3" />
-          </div>
+    <div style={{
+      minHeight: '100vh',
+      background: '#f0f2f5',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: "'Georgia', serif",
+      padding: '24px'
+    }}>
+      <div style={{
+        background: '#ffffff',
+        borderRadius: '4px',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
+        padding: '48px 40px',
+        width: '100%',
+        maxWidth: '420px',
+        textAlign: 'center'
+      }}>
+        {/* Logo */}
+        <div style={{
+          width: '56px',
+          height: '56px',
+          background: '#1a56db',
+          borderRadius: '4px',
+          margin: '0 auto 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <span style={{ color: '#fff', fontSize: '22px', fontWeight: '700', fontFamily: 'monospace' }}>C</span>
         </div>
-        
-        <h1 className="text-3xl font-bold text-gray-900 mb-2 font-['Space_Grotesk']">
+
+        <h1 style={{
+          fontSize: '28px',
+          fontWeight: '700',
+          color: '#1a1a2e',
+          margin: '0 0 8px',
+          fontFamily: "'Georgia', serif",
+          letterSpacing: '-0.5px'
+        }}>
           CodeUstaz
         </h1>
-        <p className="text-gray-500 mb-8">
+        <p style={{
+          fontSize: '14px',
+          color: '#6b7280',
+          margin: '0 0 36px',
+          fontFamily: "'Georgia', serif"
+        }}>
           Python жиымдарын үйренуге арналған платформа
         </p>
 
-        <div className="space-y-4">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <button
             onClick={() => onSelect('student')}
-            className="w-full flex items-center justify-center gap-3 bg-[#1A56DB] hover:bg-blue-700 text-white py-4 px-6 rounded-xl font-semibold transition-colors"
+            style={{
+              width: '100%',
+              padding: '13px',
+              background: '#1a56db',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: '3px',
+              fontSize: '15px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              fontFamily: "'Georgia', serif",
+              letterSpacing: '0.3px',
+              transition: 'background 0.15s'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#1547c0')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#1a56db')}
           >
-            <GraduationCap className="w-5 h-5" />
-            {authT('studentLoginBtn')}
+            Оқушы ретінде кіру
           </button>
-          
+
           <button
             onClick={() => onSelect('teacher')}
-            className="w-full flex items-center justify-center gap-3 bg-white border-2 border-[#1A56DB] text-[#1A56DB] hover:bg-blue-50 py-4 px-6 rounded-xl font-semibold transition-colors"
+            style={{
+              width: '100%',
+              padding: '13px',
+              background: '#ffffff',
+              color: '#1a56db',
+              border: '1.5px solid #1a56db',
+              borderRadius: '3px',
+              fontSize: '15px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              fontFamily: "'Georgia', serif",
+              letterSpacing: '0.3px',
+              transition: 'background 0.15s'
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#f0f4ff')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#ffffff')}
           >
-            <BookOpen className="w-5 h-5" />
-            {authT('teacherLoginBtn')}
+            Мұғалім ретінде кіру
           </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
