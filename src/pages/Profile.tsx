@@ -1,152 +1,151 @@
 import React, { useState } from 'react';
 import { useApp } from '../store';
-import { User, Settings, Award, Flame, Target, CheckCircle2 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Check } from 'lucide-react';
+
+const DS = {
+  bg: '#f5f5f5', white: '#ffffff', border: '#e2e2e2',
+  text: '#1a1a1a', textMuted: '#6b6b6b', textLight: '#9a9a9a',
+  blue: '#1a56db', blueBg: '#eff4ff', green: '#15803d',
+  font: "'Georgia', 'Times New Roman', serif",
+  radius: '3px', radiusMd: '4px',
+};
+
+const card = (children: React.ReactNode, style: React.CSSProperties = {}) => (
+  <div style={{ background: DS.white, border: `1px solid ${DS.border}`, borderRadius: DS.radiusMd, padding: '24px', ...style }}>
+    {children}
+  </div>
+);
+
+const sectionTitle = (text: string) => (
+  <div style={{ fontSize: '13px', fontWeight: '700', color: DS.textMuted, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '16px', fontFamily: DS.font, borderBottom: `1px solid ${DS.border}`, paddingBottom: '8px' }}>
+    {text}
+  </div>
+);
 
 export default function Profile() {
   const { state, updateStudent, t, currentStudent } = useApp();
-  
   if (!currentStudent) return null;
 
   const [name, setName] = useState(currentStudent.name);
   const [isEditing, setIsEditing] = useState(false);
 
   const studentProgress = state.progress[currentStudent.id] || {};
-
-  const completedTasks = Object.values(studentProgress).reduce((acc: number, lesson: any) => {
-    return acc + Object.values(lesson.tasks).filter((t: any) => t.status === 'completed').length;
-  }, 0) as number;
-
-  const hintsUsed = 0; // Analytics not fully implemented per student yet
+  const completedTasks = Object.values(studentProgress).reduce((acc: number, lesson: any) =>
+    acc + Object.values(lesson.tasks).filter((t: any) => t.status === 'completed').length, 0) as number;
 
   const handleSaveName = () => {
     updateStudent(currentStudent.id, { name });
     setIsEditing(false);
   };
 
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="max-w-4xl mx-auto space-y-8"
+  const langBtn = (lang: 'kk' | 'ru' | 'en', label: string) => (
+    <button
+      onClick={() => updateStudent(currentStudent.id, { language: lang })}
+      style={{
+        flex: 1, padding: '8px', border: `1px solid ${currentStudent.language === lang ? DS.blue : DS.border}`,
+        borderRadius: DS.radius, background: currentStudent.language === lang ? DS.blueBg : DS.white,
+        color: currentStudent.language === lang ? DS.blue : DS.textMuted,
+        fontSize: '13px', fontWeight: '600', cursor: 'pointer', fontFamily: DS.font,
+        transition: 'all 0.15s',
+      }}
     >
-      <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
-        
-        <div className="relative flex flex-col md:flex-row items-center gap-8">
-          <div className="relative group">
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 p-1 shadow-xl">
-              <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden border-4 border-white">
-                <div className="text-5xl font-bold text-blue-600">
-                  {currentStudent.name.charAt(0).toUpperCase()}
-                </div>
-              </div>
+      {label}
+    </button>
+  );
+
+  return (
+    <div style={{ fontFamily: DS.font, maxWidth: '800px' }}>
+      <h1 style={{ fontSize: '20px', fontWeight: '700', color: DS.text, margin: '0 0 20px', fontFamily: DS.font }}>Профиль</h1>
+
+      {/* Info */}
+      {card(
+        <>
+          {sectionTitle('Жеке мәліметтер')}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+            <div style={{ width: '48px', height: '48px', background: DS.blueBg, border: `1px solid #c7d7fd`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', fontWeight: '700', color: DS.blue, fontFamily: DS.font }}>
+              {currentStudent.name.charAt(0).toUpperCase()}
             </div>
-            <div className="absolute -bottom-2 -right-2 bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold border-4 border-white shadow-md">
-              {Math.floor(completedTasks / 3) + 1}
-            </div>
-          </div>
-
-          <div className="flex-1 text-center md:text-left">
-            {isEditing ? (
-              <div className="flex items-center gap-2 max-w-sm mx-auto md:mx-0">
-                <input 
-                  type="text" 
-                  value={name} 
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
-                  autoFocus
-                />
-                <button 
-                  onClick={handleSaveName}
-                  className="p-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors"
-                >
-                  <CheckCircle2 className="w-6 h-6" />
-                </button>
-              </div>
-            ) : (
-              <h1 className="text-4xl font-bold font-['Space_Grotesk'] text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3">
-                {currentStudent.name}
-                <button onClick={() => setIsEditing(true)} className="text-sm text-blue-500 hover:text-blue-600 font-medium">Өңдеу</button>
-              </h1>
-            )}
-            <p className="text-gray-500 font-medium">Python Arrays Master in Training</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-            <Flame className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-gray-900">{currentStudent.streak}</div>
-            <div className="text-sm text-gray-500 font-medium">{t('streak')}</div>
-          </div>
-        </div>
-        
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-            <Target className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-gray-900">{completedTasks}</div>
-            <div className="text-sm text-gray-500 font-medium">{t('tasksCompleted')}</div>
-          </div>
-        </div>
-
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-            <User className="w-6 h-6" />
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-gray-900">{hintsUsed}</div>
-            <div className="text-sm text-gray-500 font-medium">{t('hintsUsed')}</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold font-['Space_Grotesk'] text-gray-900 mb-6 flex items-center gap-2">
-            <Award className="w-6 h-6 text-amber-500" />
-            {t('achievements')}
-          </h2>
-          <div className="grid grid-cols-3 gap-4">
-            {Array.from({ length: 9 }).map((_, i) => {
-              const isUnlocked = studentProgress[i + 1] && Object.values((studentProgress[i + 1] as any).tasks).every((t: any) => t.status === 'completed');
-              return (
-                <div key={i} className={`flex flex-col items-center p-4 rounded-xl border-2 transition-all ${isUnlocked ? 'border-amber-200 bg-amber-50' : 'border-gray-100 bg-gray-50 opacity-50 grayscale'}`}>
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${isUnlocked ? 'bg-amber-500 text-white shadow-md' : 'bg-gray-200 text-gray-400'}`}>
-                    {i + 1}
-                  </div>
-                  <span className="text-xs font-bold text-center text-gray-700">Сабақ {i + 1}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold font-['Space_Grotesk'] text-gray-900 mb-6 flex items-center gap-2">
-            <Settings className="w-6 h-6 text-gray-500" />
-            {t('settings')}
-          </h2>
-          
-          <div className="space-y-6">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3">{t('language')}</label>
-              <div className="flex gap-2">
-                <button onClick={() => updateStudent(currentStudent.id, { language: 'kk' })} className={`flex-1 py-2 rounded-xl font-bold transition-colors ${currentStudent.language === 'kk' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>Қазақша</button>
-                <button onClick={() => updateStudent(currentStudent.id, { language: 'ru' })} className={`flex-1 py-2 rounded-xl font-bold transition-colors ${currentStudent.language === 'ru' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>Русский</button>
-                <button onClick={() => updateStudent(currentStudent.id, { language: 'en' })} className={`flex-1 py-2 rounded-xl font-bold transition-colors ${currentStudent.language === 'en' ? 'bg-blue-600 text-white shadow-md' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>English</button>
+              {isEditing ? (
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <input value={name} onChange={e => setName(e.target.value)}
+                    style={{ padding: '6px 10px', border: `1px solid ${DS.blue}`, borderRadius: DS.radius, fontSize: '14px', fontFamily: DS.font, outline: 'none' }}
+                    autoFocus
+                  />
+                  <button onClick={handleSaveName} style={{ padding: '6px 10px', background: DS.blue, color: '#fff', border: 'none', borderRadius: DS.radius, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                    <Check size={14} />
+                  </button>
+                  <button onClick={() => setIsEditing(false)} style={{ padding: '6px 10px', background: '#f0f0f0', color: DS.textMuted, border: `1px solid ${DS.border}`, borderRadius: DS.radius, cursor: 'pointer', fontSize: '13px', fontFamily: DS.font }}>
+                    Болдырмау
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ fontSize: '16px', fontWeight: '700', color: DS.text, fontFamily: DS.font }}>{currentStudent.name}</span>
+                  <button onClick={() => setIsEditing(true)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: DS.blue, fontSize: '12px', fontFamily: DS.font, textDecoration: 'underline' }}>
+                    Өңдеу
+                  </button>
+                </div>
+              )}
+              <div style={{ fontSize: '12px', color: DS.textMuted, marginTop: '2px' }}>
+                Сынып: <strong style={{ color: DS.text }}>{currentStudent.classCode}</strong>
               </div>
             </div>
           </div>
-        </div>
+
+          {/* Stats row */}
+          <div style={{ display: 'flex', gap: '12px' }}>
+            {[
+              { val: currentStudent.streak, label: 'Streak' },
+              { val: completedTasks, label: 'Тапсырмалар' },
+              { val: Math.floor(completedTasks / 3) + 1, label: 'Деңгей' },
+            ].map(({ val, label }) => (
+              <div key={label} style={{ flex: 1, padding: '12px', background: DS.bg, border: `1px solid ${DS.border}`, borderRadius: DS.radius, textAlign: 'center' }}>
+                <div style={{ fontSize: '20px', fontWeight: '700', color: DS.text, fontFamily: DS.font }}>{val}</div>
+                <div style={{ fontSize: '11px', color: DS.textMuted, textTransform: 'uppercase', letterSpacing: '0.5px', fontFamily: DS.font }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </>
+      , { marginBottom: '12px' })}
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+        {/* Achievements */}
+        {card(
+          <>
+            {sectionTitle('Жетістіктер')}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+              {Array.from({ length: 9 }).map((_, i) => {
+                const lessonProg = studentProgress[i + 1] as any;
+                const unlocked = lessonProg && Object.values(lessonProg.tasks).every((t: any) => t.status === 'completed');
+                return (
+                  <div key={i} style={{ padding: '10px 8px', border: `1px solid ${unlocked ? '#bbf7d0' : DS.border}`, borderRadius: DS.radius, background: unlocked ? DS.white : '#fafafa', textAlign: 'center', opacity: unlocked ? 1 : 0.5 }}>
+                    <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: unlocked ? '#dcfce7' : '#f0f0f0', border: `1px solid ${unlocked ? '#86efac' : DS.border}`, margin: '0 auto 4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: '700', color: unlocked ? DS.green : DS.textLight, fontFamily: DS.font }}>
+                      {i + 1}
+                    </div>
+                    <div style={{ fontSize: '11px', color: DS.textMuted, fontFamily: DS.font }}>Сабақ {i + 1}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+
+        {/* Settings */}
+        {card(
+          <>
+            {sectionTitle('Баптаулар')}
+            <div>
+              <div style={{ fontSize: '12px', fontWeight: '600', color: DS.textMuted, textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '8px', fontFamily: DS.font }}>Тіл</div>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                {langBtn('kk', 'Қазақша')}
+                {langBtn('ru', 'Русский')}
+                {langBtn('en', 'English')}
+              </div>
+            </div>
+          </>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 }
